@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-b
+  labels:
+    app: service-b
+spec:
+  replicas: {{ .Values.serviceB.replicas }}
+  selector:
+    matchLabels:
+      app: service-b
+  template:
+    metadata:
+      labels:
+        app: service-b
+    spec:
+      containers:
+        - name: service-b
+          image: {{ .Values.serviceB.image }}
+          ports:
+            - containerPort: {{ .Values.serviceB.containerPort }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-b
+  labels:
+    app: service-b
+spec:
+  selector:
+    app: service-b
+  ports:
+    - name: http
+      port: 80
+      targetPort: {{ .Values.serviceB.containerPort }}
+  type: ClusterIP
+

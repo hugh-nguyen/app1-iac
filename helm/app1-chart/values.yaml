@@ -1,0 +1,11 @@
+serviceA:
+  image: "495959475470.dkr.ecr.ap-southeast-2.amazonaws.com/app1-service-a:latest"
+  replicas: 1
+  containerPort: 8080
+
+  serviceBUrl: "http://service-b"
+
+serviceB:
+  image: "495959475470.dkr.ecr.ap-southeast-2.amazonaws.com/app1-service-b:latest"
+  replicas: 1
+  containerPort: 8080
