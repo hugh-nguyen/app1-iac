@@ -1,5 +1,5 @@
 serviceA:
-  image: "495599745704.dkr.ecr.ap-southeast-2.amazonaws.com/app1-service-a:0.0.25"
+  image: "495599745704.dkr.ecr.ap-southeast-2.amazonaws.com/app1-service-a:0.0.26"
   replicas: 1
   containerPort: 5000
 
