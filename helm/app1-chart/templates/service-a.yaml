@@ -37,4 +37,27 @@ spec:
     - name: http
       port: 80
       targetPort: {{ .Values.serviceA.containerPort }}
-  type: LoadBalancer
+  type: ClusterIP
+  ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: service-a-ingress
+  annotations:
+    kubernetes.io/ingress.class: "alb"
+    alb.ingress.kubernetes.io/load-balancer-name: "eks-lb" 
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/target-type: "ip"
+    alb.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  rules:
+    - host: service-a.yourdomain.com 
+      http:
+        paths:
+          - path: /a/
+            pathType: Prefix
+            backend:
+              service:
+                name: service-a
+                port:
+                  number: 80
