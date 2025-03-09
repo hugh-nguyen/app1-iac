@@ -44,14 +44,14 @@ kind: Ingress
 metadata:
   name: service-a-ingress
   annotations:
-    kubernetes.io/ingress.class: "alb"
-    alb.ingress.kubernetes.io/load-balancer-name: "eks-lb" 
     alb.ingress.kubernetes.io/scheme: "internet-facing"
     alb.ingress.kubernetes.io/target-type: "ip"
     alb.ingress.kubernetes.io/backend-protocol: "HTTP"
+    alb.ingress.kubernetes.io/load-balancer-name: "eks-lb"
 spec:
+  ingressClassName: alb
   rules:
-    - host: service-a.yourdomain.com 
+    - host: service-a.yourdomain.com
       http:
         paths:
           - path: /a/
@@ -61,3 +61,4 @@ spec:
                 name: service-a
                 port:
                   number: 80
+
