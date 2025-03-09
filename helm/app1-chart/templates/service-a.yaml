@@ -30,6 +30,10 @@ metadata:
   name: service-a
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/managed-by: "Helm"
 spec:
   selector:
     app: service-a
@@ -38,4 +42,3 @@ spec:
       port: 80
       targetPort: 5000
   type: LoadBalancer
-
