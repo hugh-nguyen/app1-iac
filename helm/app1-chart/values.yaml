@@ -2,7 +2,6 @@ serviceA:
   image: "495599745704.dkr.ecr.ap-southeast-2.amazonaws.com/app1-service-a:0.0.27"
   replicas: 1
   containerPort: 5000
-
   serviceBUrl: "http://service-b"
 
 serviceB:
