@@ -52,6 +52,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/security-groups: "sg-06a0a3f41fef0da9e"
     alb.ingress.kubernetes.io/subnets: "subnet-01d45bcc981e8d75e,subnet-05c33b49c60160c9c"
+    alb.ingress.kubernetes.io/actions.forward-to-tg: '{"Type": "forward", "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-southeast-2:495599745704:targetgroup/eks-tg/arn:aws:elasticloadbalancing:ap-southeast-2:495599745704:targetgroup/eks-tg/f475c5870c9686d3"}'
 spec:
   ingressClassName: alb
   rules:
@@ -62,8 +63,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: service-a
+                name: forward-to-tg
                 port:
                   number: 80
-
-
