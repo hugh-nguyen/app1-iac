@@ -48,6 +48,10 @@ metadata:
     alb.ingress.kubernetes.io/target-type: "ip"
     alb.ingress.kubernetes.io/backend-protocol: "HTTP"
     alb.ingress.kubernetes.io/load-balancer-name: "eks-lb"
+    alb.ingress.kubernetes.io/group.name: "eks-ingress-group"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/security-groups: "sg-06a0a3f41fef0da9e"
+    alb.ingress.kubernetes.io/subnets: "subnet-01d45bcc981e8d75e,subnet-05c33b49c60160c9c"
 spec:
   ingressClassName: alb
   rules:
@@ -61,4 +65,5 @@ spec:
                 name: service-a
                 port:
                   number: 80
+
 
