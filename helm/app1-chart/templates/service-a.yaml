@@ -50,7 +50,7 @@ metadata:
     alb.ingress.kubernetes.io/load-balancer-name: "eks-lb"
     alb.ingress.kubernetes.io/group.name: "eks-ingress-group"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    alb.ingress.kubernetes.io/security-groups: "sg-06a0a3f41fef0da9e"
+    alb.ingress.kubernetes.io/security-groups: "sg-0353e8632c4d0bd2d"
     alb.ingress.kubernetes.io/subnets: "subnet-01d45bcc981e8d75e,subnet-05c33b49c60160c9c"
     alb.ingress.kubernetes.io/actions.forward-to-tg: '{"Type": "forward", "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-southeast-2:495599745704:targetgroup/eks-tg/arn:aws:elasticloadbalancing:ap-southeast-2:495599745704:targetgroup/eks-tg/f475c5870c9686d3"}'
 spec:
