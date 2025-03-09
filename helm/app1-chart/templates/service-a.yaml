@@ -28,13 +28,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-a
-  labels:
-    app: service-a
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
 spec:
   selector:
     app: service-a
   ports:
-    - name: http
+    - protocol: TCP
       port: 80
-      targetPort: {{ .Values.serviceA.containerPort }}
-  type: LoadBalancer
+      targetPort: 5000
+  type: NodePort
