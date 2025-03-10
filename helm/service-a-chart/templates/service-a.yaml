@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: service-a-{{ .Values.version | replace "." "-" }}
   labels:
-    app: service-a
+    app: service-a-{{ .Values.version | replace "." "-" }}
 spec:
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: service-a
+      app: service-a-{{ .Values.version | replace "." "-" }}
   template:
     metadata:
       labels:
-        app: service-a
+        app: service-a-{{ .Values.version | replace "." "-" }}
     spec:
       serviceAccountName: ecr-access-sa
       containers:
-        - name: service-a
+        - name: service-a-{{ .Values.version | replace "." "-" }}
           image: 495599745704.dkr.ecr.ap-southeast-2.amazonaws.com/app1-service-a:{{ .Values.version }}
           ports:
             - containerPort: 80
@@ -27,13 +27,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-a
+  name: service-a-{{ .Values.version | replace "." "-" }}
   labels:
-    app: service-a
+    app: service-a-{{ .Values.version | replace "." "-" }}
 spec:
   type: ClusterIP
   selector:
-    app: service-a
+    app: service-a-{{ .Values.version | replace "." "-" }}
   ports:
     - name: http
       port: 80
