@@ -62,8 +62,15 @@ spec:
     - host: service-a.yourdomain.com
       http:
         paths:
-          - path: /a/
+          - path: /a(/|$)(.*)
             pathType: Prefix
+            backend:
+              service:
+                name: service-a
+                port:
+                  number: 80
+          - path: /health
+            pathType: Exact
             backend:
               service:
                 name: service-a
