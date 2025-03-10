@@ -42,7 +42,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: service-a-ingress
+  name: service-a-ingress-{{ .Values.version | replace "." "-" }}
   annotations:
     alb.ingress.kubernetes.io/scheme: "internet-facing"
     alb.ingress.kubernetes.io/target-type: "ip"
@@ -60,7 +60,7 @@ spec:
   ingressClassName: alb
   defaultBackend:
     service:
-      name: service-a
+      name: service-a-{{ .Values.version | replace "." "-" }}
       port:
         number: 80
   rules:
@@ -70,7 +70,7 @@ spec:
             pathType: ImplementationSpecific
             backend:
               service:
-                name: service-a
+                name: service-a-{{ .Values.version | replace "." "-" }}
                 port:
                   number: 80
 
