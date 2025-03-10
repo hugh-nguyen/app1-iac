@@ -52,7 +52,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/security-groups: "sg-0446972e9fac79d5c"
     alb.ingress.kubernetes.io/subnets: "subnet-0b10896d480b2beb5,subnet-086fa042b2c6f22c3"
-    alb.ingress.kubernetes.io/target-group-arn: arn:aws:elasticloadbalancing:ap-southeast-2:495599745704:targetgroup/eks-tg/df62cd1351cb4856
+    alb.ingress.kubernetes.io/target-group-arn: arn:aws:elasticloadbalancing:ap-southeast-2:495599745704:targetgroup/eks-tg/be37b6db4a2b5dd0
 spec:
   ingressClassName: alb
   rules:
