@@ -58,9 +58,13 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-unhealthy-threshold-count: "2"
 spec:
   ingressClassName: alb
+  defaultBackend:
+    service:
+      name: service-a
+      port:
+        number: 80
   rules:
-    - host: "*"
-      http:
+    - http:
         paths:
           - path: /a/*
             pathType: Prefix
@@ -76,3 +80,4 @@ spec:
                 name: service-a
                 port:
                   number: 80
+
