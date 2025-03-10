@@ -1,0 +1,4 @@
+apiVersion: v2
+name: app1-service-b-chart
+description: Helm chart to deploy service-b
+version: 0.1.0
