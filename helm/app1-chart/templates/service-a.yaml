@@ -62,7 +62,7 @@ spec:
     - host: service-a.yourdomain.com
       http:
         paths:
-          - path: /a(/|$)(.*)
+          - path: /a/*
             pathType: Prefix
             backend:
               service:
