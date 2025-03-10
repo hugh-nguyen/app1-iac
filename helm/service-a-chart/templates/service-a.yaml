@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: service-a-{{ .Values.version | replace "." "-" }}
   labels:
-    app: service-a-{{ .Values.version | replace "." "-" }}
+    app: service-a
 spec:
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: service-a-{{ .Values.version | replace "." "-" }}
+      app: service-a
   template:
     metadata:
       labels:
-        app: service-a-{{ .Values.version | replace "." "-" }}
+        app: service-a
     spec:
       serviceAccountName: ecr-access-sa
       containers:
-        - name: service-a-{{ .Values.version | replace "." "-" }}
+        - name: service-a
           image: 495599745704.dkr.ecr.ap-southeast-2.amazonaws.com/app1-service-a:{{ .Values.version }}
           ports:
             - containerPort: 80
@@ -27,13 +27,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-a-{{ .Values.version | replace "." "-" }}
+  name: service-a
   labels:
-    app: service-a-{{ .Values.version | replace "." "-" }}
+    app: service-a
 spec:
   type: ClusterIP
   selector:
-    app: service-a-{{ .Values.version | replace "." "-" }}
+    app: service-a
   ports:
     - name: http
       port: 80
@@ -42,6 +42,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: service-a-ingress
   annotations:
     alb.ingress.kubernetes.io/scheme: "internet-facing"
     alb.ingress.kubernetes.io/target-type: "ip"
@@ -59,7 +60,7 @@ spec:
   ingressClassName: alb
   defaultBackend:
     service:
-      name: service-a-{{ .Values.version | replace "." "-" }}
+      name: service-a
       port:
         number: 80
   rules:
@@ -69,7 +70,7 @@ spec:
             pathType: ImplementationSpecific
             backend:
               service:
-                name: service-a-{{ .Values.version | replace "." "-" }}
+                name: service-a
                 port:
                   number: 80
 
