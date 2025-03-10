@@ -31,14 +31,13 @@ metadata:
   labels:
     app: service-a
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: service-a
   ports:
     - name: http
       port: 80
       targetPort: 80
-      nodePort: 30080
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -46,13 +45,12 @@ metadata:
   name: service-a-ingress
   annotations:
     alb.ingress.kubernetes.io/scheme: "internet-facing"
-    alb.ingress.kubernetes.io/target-type: "ip"
+    alb.ingress.kubernetes.io/target-type: "instance"
     alb.ingress.kubernetes.io/backend-protocol: "HTTP"
     alb.ingress.kubernetes.io/group.name: "eks-ingress-group"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/security-groups: "sg-0446972e9fac79d5c"
     alb.ingress.kubernetes.io/subnets: "subnet-0b10896d480b2beb5,subnet-086fa042b2c6f22c3"
-    alb.ingress.kubernetes.io/target-group-arn: arn:aws:elasticloadbalancing:ap-southeast-2:495599745704:targetgroup/eks-tg/be37b6db4a2b5dd0
 spec:
   ingressClassName: alb
   rules:
