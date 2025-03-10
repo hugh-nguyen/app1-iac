@@ -66,15 +66,8 @@ spec:
   rules:
     - http:
         paths:
-          - path: /a/*
-            pathType: Prefix
-            backend:
-              service:
-                name: service-a
-                port:
-                  number: 80
-          - path: /health
-            pathType: Exact
+          - path: /*
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: service-a
