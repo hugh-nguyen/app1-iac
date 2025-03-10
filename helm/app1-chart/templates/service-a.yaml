@@ -31,13 +31,14 @@ metadata:
   labels:
     app: service-a
 spec:
+  type: NodePort
   selector:
     app: service-a
   ports:
     - name: http
       port: 80
-      targetPort: {{ .Values.serviceA.containerPort }}
-  type: ClusterIP
+      targetPort: 80
+      nodePort: 30080
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
