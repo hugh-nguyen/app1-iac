@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-app
+  name: mfe-a
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: web-app
+      app: mfe-a
   template:
     metadata:
       labels:
-        app: web-app
+        app: mfe-a
     spec:
       containers:
-        - name: web-app
-          image: 495599745704.dkr.ecr.ap-southeast-2.amazonaws.com/web-app:{{ .Values.version | replace "." "-" }}
+        - name: mfe-a
+          image: 495599745704.dkr.ecr.ap-southeast-2.amazonaws.com/app1-mfe-a:{{ .Values.version | replace "." "-" }}
           ports:
             - containerPort: 80
 ---
