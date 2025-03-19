@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mfe-a-{{ .Values.version | replace "." "-" }}
+  name: app1-mfe-a-{{ .Values.version | replace "." "-" }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mfe-a-{{ .Values.version | replace "." "-" }}
+      app: app1-mfe-a-{{ .Values.version | replace "." "-" }}
   template:
     metadata:
       labels:
-        app: mfe-a-{{ .Values.version | replace "." "-" }}
+        app: app1-mfe-a-{{ .Values.version | replace "." "-" }}
     spec:
       containers:
-        - name: mfe-a-{{ .Values.version | replace "." "-" }}
+        - name: app1-mfe-a-{{ .Values.version | replace "." "-" }}
           image: 495599745704.dkr.ecr.ap-southeast-2.amazonaws.com/app1-mfe-a:{{ .Values.version }}
           ports:
             - containerPort: 80
@@ -21,13 +21,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mfe-a-{{ .Values.version | replace "." "-" }}
+  name: app1-mfe-a-{{ .Values.version | replace "." "-" }}
   labels:
-    app: mfe-a-{{ .Values.version | replace "." "-" }}
+    app: app1-mfe-a-{{ .Values.version | replace "." "-" }}
 spec:
   type: ClusterIP
   selector:
-    app: mfe-a-{{ .Values.version | replace "." "-" }}
+    app: app1-mfe-a-{{ .Values.version | replace "." "-" }}
   ports:
     - name: http
       port: 80
