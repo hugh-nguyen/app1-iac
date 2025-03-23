@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-service-c-{{ .Values.version | replace "." "-" }}
+  labels:
+    app: app1-service-c-{{ .Values.version | replace "." "-" }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: app1-service-c-{{ .Values.version | replace "." "-" }}
+  template:
+    metadata:
+      labels:
+        app: app1-service-c-{{ .Values.version | replace "." "-" }}
+    spec:
+      serviceAccountName: ecr-access-sa
+      containers:
+        - name: app1-service-c-{{ .Values.version | replace "." "-" }}
+          image: 495599745704.dkr.ecr.ap-southeast-2.amazonaws.com/app1-service-c:{{ .Values.version }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1-service-c-{{ .Values.version | replace "." "-" }}
+  labels:
+    app: app1-service-c-{{ .Values.version | replace "." "-" }}
+spec:
+  selector:
+    app: app1-service-c-{{ .Values.version | replace "." "-" }}
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  type: ClusterIP
